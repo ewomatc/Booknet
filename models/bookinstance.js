@@ -8,7 +8,8 @@ const BookInstanceSchema = new mongoose.Schema({
     required: true,
     enum: ['Available', 'Maintenance', 'Loaned', 'Reserved'],
     default: 'Maintenance'
-  }, due_back: { type: Date, default: Date.now }
+  }, 
+  due_back: { type: Date, default: Date.now }
 })
 
 //virtual for bookinstance url
