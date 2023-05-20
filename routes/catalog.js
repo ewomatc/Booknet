@@ -21,7 +21,7 @@ router.get('/book/create', book_controller.book_create_get)
 router.post('/book/create', book_controller.book_create_post)
 
 //GET request to display all books
-router.get('/book', book_controller.book_list)
+router.get('/books', book_controller.book_list)
 
 //GET request to list one book by id
 router.get('/book/:id', book_controller.book_detail)
@@ -49,7 +49,7 @@ router.get('/author/create', author_controller.author_create_get)
 router.post('/author/create', author_controller.author_create_get)
 
 //GET request to display all authors
-router.get('/author', author_controller.author_list)
+router.get('/authors', author_controller.author_list)
 
 //GET request to display one author by id
 router.post('/author/:id', author_controller.author_detail)
@@ -77,7 +77,7 @@ router.get('/genre/create', genre_controller.genre_create_get)
 router.post('/genre/create', genre_controller.genre_create_post)
 
 //GET req to display all genres
-router.get('/genre', genre_controller.genre_list)
+router.get('/genres', genre_controller.genre_list)
 
 //GET request to display one genre by id
 router.get('/genre/:id', genre_controller.genre_detail)
@@ -105,7 +105,7 @@ router.get('/bookinstance/create',book_instance_controller.bookinstance_create_g
 router.post('/bookinstance/create',book_instance_controller.bookinstance_create_post);
 
 //GET req to list all bookinstances
-router.get('/book', book_controller.book_list)
+router.get('/bookinstances', book_controller.book_list)
 
 //GET req to list one book by id
 router.get('/book/:id', book_controller.book_create_get)
