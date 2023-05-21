@@ -1,15 +1,42 @@
 const Book = require("../models/book");
+const Author = require('../models/author')
+const BookInstance = require('../models/bookinstance')
+const Genre = require('../models/genre')
 const asyncHandler = require("express-async-handler");
+//const {body, validationResult} = require('express-validator')
 
 
 //will display the site home page
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Site Home Page");
+  const [
+    numBooks,
+    numBookInstances,
+    numAvailableBookInstances,
+    numAuthors,
+    numGenres,
+  ] = await Promise.all([
+    Book.countDocuments({}).exec(),
+    BookInstance.countDocuments({}).exec(),
+    BookInstance.countDocuments({status: 'Available'}).exec(),
+    Author.countDocuments({}).exec(),
+    Genre.countDocuments({}).exec(),
+  ])
+
+  res.render('index', {
+    title: 'Booknet Home',
+    book_count: numBooks,
+    book_instance_count: numBookInstances,
+    book_instance_available_count: numAvailableBookInstances,
+    author_count: numAuthors,
+    genre_count: numGenres,
+  })
 });
 
 // Display list of all books.
 exports.book_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book list");
+  const allBooks = await Book.find({}, 'author title').sort({'title': 1}).populate('author').exec()
+
+  res.render('book_list', {title: 'All Books', book_list: allBooks})
 });
 
 // Display detail page for a specific book.

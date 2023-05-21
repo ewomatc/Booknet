@@ -1,5 +1,17 @@
 extends layout
 
-block content
+block content 
   h1= title
-  p Welcome to #{title}
+
+  p Welcome to #[em Booknet], a very basic Library Management App.
+
+  h1 Quick Overview
+
+  p The current state of the Library:
+
+  ul
+    li #[strong Total Books:] !{book_count}
+    li #[strong Total Copies:] !{book_instance_count}
+    li #[strong Copies currently available:] !{book_instance_available_count}
+    li #[strong Registered Authors:] !{author_count}
+    li #[strong All Genres:] !{genre_count}
