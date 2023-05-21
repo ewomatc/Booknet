@@ -3,12 +3,14 @@ const asyncHandler = require('express-async-handler')
 
 //display a list of all book instances
 exports.bookinstance_list = asyncHandler( async(req, res, next) => {
-  res.send('NOT IMPLEMENTED: List all book instance')
+  const allBookInstanceList = await BookInstance.find().populate('book').exec()
+
+  res.render('bookinstance_list', {title: 'List all Book Instances', bookinstance_list: allBookInstanceList})
 })
 
 //display detail page for a single book instance
 exports.bookinstance_detail = asyncHandler( async(req, res, next) => {
-  req.send(`NOT SET: Bookinstance detail: ${req.params.id}`)
+  res.send(`NOT SET: Bookinstance detail: ${req.params.id}`)
 })
 
 // Display BookInstance create form on GET.

@@ -105,10 +105,10 @@ router.get('/bookinstance/create',book_instance_controller.bookinstance_create_g
 router.post('/bookinstance/create',book_instance_controller.bookinstance_create_post);
 
 //GET req to list all bookinstances
-router.get('/bookinstances', book_controller.book_list)
+router.get('/bookinstances', book_instance_controller.bookinstance_list)
 
 //GET req to list one book by id
-router.get('/book/:id', book_controller.book_create_get)
+router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail)
 
 // GET request to update BookInstance.
 router.get("/bookinstance/:id/update", book_instance_controller.bookinstance_update_get);
