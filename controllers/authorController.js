@@ -1,14 +1,29 @@
 const Author = require('../models/author.js')
 const asyncHandler = require('express-async-handler')
+const Book = require('../models/book.js')
 
 //display a list of all authors
 exports.author_list = asyncHandler( async(req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author list')
+  const allAuthors = await Author.find().sort({family_name: 1}).exec()
+
+  res.render('author_list', {title: 'Author list', author_list: allAuthors})
 })
 
 //display details page of a specific author by id
 exports.author_detail = asyncHandler( async(req, res, next) => {
-  res.send(`NOT IMPLEMENTED: author detail ${req.params.id}`)
+  const [author, allBooksByAuthor] = await Promise.all([
+    Author.findById(req.params.id).exec(),
+    Book.find({ author: req.params.id }, "title summary").exec(),
+  ]);
+
+  if (author === null) {
+    // No results.
+    const err = new Error("Author not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('author_detail', {title: "Author Detail", author: author, author_books: allBooksByAuthor });
 })
 
 //display author create form on GET
