@@ -13,7 +13,8 @@ const app = express();
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
-const mongodb = process.env.MONGODB_URI
+const dev_db_url = 'mongodb+srv://odinuser:odinpass@cluster0.t5t5qhr.mongodb.net/booknet?retryWrites=true&w=majority';
+const mongodb = process.env.MONGODB_URI || dev_db_url;
 
 main().catch(err => console.log(err)) 
 async function main() {
@@ -37,12 +38,12 @@ app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
