@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require('dotenv').config()
 
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog')
@@ -13,8 +14,8 @@ const app = express();
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
-const dev_db_url = 'mongodb+srv://odinuser:odinpass@cluster0.t5t5qhr.mongodb.net/booknet?retryWrites=true&w=majority';
-const mongodb = process.env.MONGODB_URI || dev_db_url;
+//const dev_db_url = 'mongodb+srv://odinuser:odinpass@cluster0.t5t5qhr.mongodb.net/booknet?retryWrites=true&w=majority';
+const mongodb = process.env.MONGODB_URI;
 
 main().catch(err => console.log(err)) 
 async function main() {
