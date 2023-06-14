@@ -14,7 +14,6 @@ const app = express();
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
-//const dev_db_url = 'mongodb+srv://odinuser:odinpass@cluster0.t5t5qhr.mongodb.net/booknet?retryWrites=true&w=majority';
 const mongodb = process.env.MONGODB_URI;
 
 main().catch(err => console.log(err)) 
